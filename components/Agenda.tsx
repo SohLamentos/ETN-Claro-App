@@ -163,7 +163,7 @@ const Agenda: React.FC<AgendaProps> = ({ user }) => {
     const afternoonSchs = daySchs.filter(s => s.shift === Shift.AFTERNOON);
 
     return (
-      <div className="flex flex-col h-full w-full overflow-hidden">
+      <div className="flex flex-col h-full w-full overflow-hidden min-h-0">
         <div className="flex-1 flex overflow-hidden border-b border-white/20">
           {morningBlock ? renderCard(morningBlock.title.replace('OUTROS - ', ''), morningBlock.color || (morningBlock.title.includes('FÉRIAS') ? COLORS.FERIAS : morningBlock.title.includes('FOLGA') ? COLORS.FOLGA : morningBlock.title.includes('OUTROS') ? COLORS.OUTROS : COLORS.BLOQUEIO)) : 
            morningSchs.length > 0 ? renderCard(formatScheduleTitle(morningSchs)!, morningSchs[0].type === ExpertiseType.VIRTUAL ? COLORS.VIRTUAL : COLORS.PRESENTIAL) : null}
@@ -302,12 +302,12 @@ const Agenda: React.FC<AgendaProps> = ({ user }) => {
         </div>
       </div>
 
-      <div className={`bg-white border-2 rounded-[40px] shadow-sm overflow-auto flex-1 relative no-scrollbar transition-colors ${isTestMode ? 'border-amber-400 bg-amber-50/20' : 'border-slate-200'}`}>
+      <div className={`bg-white border-2 rounded-[40px] shadow-sm overflow-auto flex-1 min-h-0 max-h-[calc(100vh-260px)] relative no-scrollbar transition-colors ${isTestMode ? 'border-amber-400 bg-amber-50/20' : 'border-slate-200'}`}>
         {isTestMode && (
           <div className="absolute top-4 left-1/2 -translate-x-1/2 z-[50] bg-amber-500 text-white px-6 py-2 rounded-full font-black text-[10px] uppercase tracking-[0.3em] shadow-xl">Visualizando Ambiente de Teste</div>
         )}
         <table className="w-full border-collapse table-fixed min-w-[1400px]">
-          <thead className="sticky top-0 z-30">
+          <thead className="sticky top-0 z-30 bg-slate-900">
             <tr className="bg-slate-900 text-white shadow-xl">
               <th className="w-72 p-4 text-left font-black text-[11px] border-r-2 border-white/20 sticky left-0 top-0 z-40 bg-slate-900 uppercase tracking-widest">Equipe Analistas</th>
               {weekDates.map((d, idx) => <th key={idx} className="p-4 text-center font-black text-[11px] border-r border-white/10 uppercase tracking-widest bg-slate-900">{d.formatted}</th>)}
